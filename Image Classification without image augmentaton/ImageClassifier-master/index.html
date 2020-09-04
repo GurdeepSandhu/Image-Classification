@@ -1,0 +1,93 @@
+<!doctype HTML>
+<html> 
+    <head>
+        <meta charset = "utf-8">
+        <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+        <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/8.0.1/mocha.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="index.css">
+
+
+    </head>
+
+    
+
+        <body>
+          <header>
+            <h3> A testing ground for improving accuracy for Deep Learning on the Browser</h3>
+           
+          </header>
+          
+          <p id = "status"> 
+              Video Stream: <span id = "statusVideo"> Initalising </span>
+          </p>
+
+          <p> 
+          Add Image of a dimension size of 224x224
+          <input type="file" id="inputImage" accept="image/*" hidden="hidden" />
+          <button id="addImage" class = "button" > Add Image</button>
+          </p>
+
+          <p> 
+            <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+            <canvas id="canvas"></canvas>
+            </p>
+
+          <p>  
+            <input id= "txtLabel1" type="text" value="Label: F" class="input" readonly> 
+            <button id= "addLabel1" class = "button"> Add webcam image </button>
+            <button id= "uploadLabel1" class = "button"> Add Canvas image </button>
+            <span id="numLabel1">0</span> Training images
+          </p>
+
+          <p>  
+            <input id= "txtLabel2" type="text" value="Label: K" class="input" readonly> 
+            <button id= "addLabel2" class = "button" > Add training image </button>
+            <button id= "uploadLabel2" class = "button"> Add Canvas image </button>
+
+               <span id="numLabel2">0</span> Training images
+          </p>
+
+          <p>  
+            <input id= "txtLabel3" type="text" value="Label: W" class="input" readonly> 
+            <button id= "addLabel3" class = "button"> Add training image </button>
+            <button id= "uploadLabel3" class = "button"> Add Canvas image </button>
+
+              <span id="numLabel3">0</span> Training images
+          </p>
+
+            <p>  
+              <input id= "txtLabel4" type="text" value="Label: U" class="input" readonly> 
+              <button id= "addLabel4" class = "button" > Add training image </button>
+              <button id= "uploadLabel4" class = "button"> Add Canvas image </button>
+
+              <span id="numLabel4">0</span> Training images
+           </p>
+
+        
+          
+        
+
+            <p>
+            <button id="btnPredict" class = "button"> Start Predicting</button>
+            <span id="lPrediction"> </span>
+            <button id="btnTrain" class = "button"> Train Model</button>
+            <button id="CheckModel" class = "button"> CheckModel</button>
+            <button id="saveModel" class = "button"> saveModel</button>
+   
+          </p>
+        <script src="index.js"> </script>
+        <script src="classifier.js"> </script>
+        <script src="dataset.js"> </script>
+        </body>
+    </html>
+    
+
+
+
+            
+    

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+ <!-- link to mocha css stylesheet -->
+<link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+
+<!--  write a div with id "mocha" for the output to be inserted into -->
+<div id="mocha"></div>
+
+<!-- load mocha framework -->
+<script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+
+<!-- load any other libraries like the chai assertion library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.0/chai.js"></script>
+<script src="classifier.js"> </script>
+<script src="dataset.js"> </script>
+<script src="assert.js"> </script>
+
+<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+<!-- setup mocha to use the BDD interface -->
+<!-- Note: you can use TDD here instead -->
+<!-- depending on how you are writing your tests -->
+<!-- more information: http://mochajs.org/#tdd -->
+<script>
+  mocha.setup("bdd");
+</script>
+
+<!-- write tests -->
+<script>
+  // access 'expect' from chai
+
+
+  const classifier = new imageClassifier(5);
+
+  
+
+  var expect = chai.expect;
+
+  // write tests (BDD example)
+  describe("classifierLoaded", function() {
+    this.timeout(6000);
+    it("Loads the classifier",  async function() {
+        return (classifier.initalise()).then(res => assert.equal(res, true))
+        this.timeout(10000);
+
+    });  
+ });
+
+ describe("loadWebcam", function(done) {
+    this.timeout(6000);
+    it("Loaded the webcam",  async function() {
+        return (classifier.createWebcam()).then(res => assert.equal(res, true))
+        
+    });  
+ });
+
+//Correct train size
+//  describe("addLabel", function() {
+//     this.timeout(6000);
+//     it("Adding 1st label",  function() {
+//         return (classifier.addLabel("Test1")).then(res => assert.equal(res, true))
+//     });  
+
+//     it("Adding 2nd  label",  function() {
+//         return (classifier.addLabel("Test2")).then(res => assert.equal(res, true))
+//     });  
+//     it("Adding 3rd  label",  function() {
+//         return (classifier.addLabel("Test2")).then(res => assert.equal(res, true))
+//     });  
+//     it("Adding 4th  label",  function() {
+//         return (classifier.addLabel("Test2")).then(res => assert.equal(res, true))
+//     });  
+//  });
+
+ //incorrect size
+
+ describe("addLabel", function() {
+    this.timeout(6000);
+    it("Adding 1st label",  function() {
+        return (classifier.addLabel("Test1")).then(res => assert.equal(res, true))
+    });  
+
+    it("Adding 2nd  label",  function() {
+        return (classifier.addLabel("Test2")).then(res => assert.equal(res, true))
+    });  
+
+ });
+
+
+
+
+
+ describe("Train Model", function(done) {
+    this.timeout(6000);
+    it("Training the model",  async function() {
+        return (classifier.trainModel()).then(res => assert.equal(res, true))
+        
+    });  
+ });
+
+
+
+
+</script>
+
+<!-- run mocha -->
+<script>
+  mocha.run();
+</script>
+<body>
+    <p> 
+        <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+        <canvas id="canvas"></canvas>
+        </p>
+</body>
+
+</html>
